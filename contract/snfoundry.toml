@@ -1,0 +1,4 @@
+[sncast.default]
+account = "demo"
+url = "https://starknet-sepolia.public.blastapi.io/rpc/v0_7"
+show-explorer-links = true
