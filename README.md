@@ -116,14 +116,14 @@ Create a foundry config file named `snfoundry.toml` inside the `contract` folder
 
 ```toml
 [sncast.default]
-account = "demo"
+account = "test"
 url = "https://starknet-sepolia.public.blastapi.io/rpc/v0_7"
 ```
 
 Create a Starknet account:
 
 ```bash
-sncast account create --type oz --name demo
+sncast account create --type oz --name test
 ```
 
 ### Step 10: Send some money to the generated address
@@ -140,7 +140,7 @@ Use STRK as the fee token.
 On Starknet all accounts are contracts, even your wallet, so you need to deploy an account contract to interact with your application.
 
 ```bash
-sncast account deploy --fee-token strk --name demo
+sncast account deploy --fee-token strk --name test
 ```
 
 ### Step 12: Initialize Garaga environment
@@ -178,5 +178,10 @@ garaga deploy --fee strk --class-hash 0x62412c03a6d8f5d1b721757a67e5e2d092ae0bbb
 ### Step 14: Invoke the verifier contract
 
 ```bash
-garaga verify-onchain --system ultra_keccak_honk --contract-address 0x52691054da2ae92e7dd55afe4201adc6da412c97539f0f5b8687d069581165b --proof ../circuit/target/proof --vk ../circuit/target/vk --fee strk
+garaga verify-onchain \
+    --system ultra_keccak_honk \
+    --contract-address 0x52691054da2ae92e7dd55afe4201adc6da412c97539f0f5b8687d069581165b \
+    --proof ../circuit/target/proof \
+    --vk ../circuit/target/vk \
+    --fee strk
 ```

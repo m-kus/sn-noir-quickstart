@@ -37,10 +37,10 @@ build-contract:
 	cd contract && scarb build
 
 create-account:
-	cd contract && sncast account create --type oz --name demo
+	cd contract && sncast account create --type oz --name test
 
 deploy-account:
-	cd contract && sncast account deploy --fee-token strk --name demo
+	cd contract && sncast account deploy --fee-token strk --name test
 
 declare-contract:
 	cd contract && garaga declare --fee strk
@@ -48,11 +48,19 @@ declare-contract:
 deploy-contract:
 	cd contract && garaga deploy --fee strk --class-hash 0x62412c03a6d8f5d1b721757a67e5e2d092ae0bbbdb487eb1c7c598835324a76
 
-invoke-contract:
+calldata:
 	cd contract && \
-		garaga verify-onchain \
+		garaga calldata \
 			--system ultra_keccak_honk \
-			--contract-address 0x52691054da2ae92e7dd55afe4201adc6da412c97539f0f5b8687d069581165b \
 			--proof ../circuit/target/proof \
 			--vk ../circuit/target/vk \
-			--fee strk
+			--format starkli > calldata.txt
+
+invoke-contract:
+	cd contract && \
+		calldata=$(cat calldata.txt) && \
+		sncast --account test invoke \
+			--fee-token eth \
+			--contract-address 0x52691054da2ae92e7dd55afe4201adc6da412c97539f0f5b8687d069581165b \
+			--function "verify_ultra_keccak_honk_proof" \
+			--calldata $(calldata)
