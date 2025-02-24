@@ -1,10 +1,10 @@
 install-noir:
 	curl -L https://raw.githubusercontent.com/noir-lang/noirup/refs/heads/main/install | bash
-	noirup
+	noirup --version 1.0.0-beta.1
 
 install-barretenberg:
 	curl -L https://raw.githubusercontent.com/AztecProtocol/aztec-packages/refs/heads/master/barretenberg/bbup/install | bash
-	bbup
+	bbup --version 0.67.0
 
 install-scarb:
 	curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | sh -s -- -v 2.9.2
@@ -46,13 +46,13 @@ declare-contract:
 	cd contract && garaga declare --fee strk
 
 deploy-contract:
-	cd contract && garaga deploy --fee strk --class-hash 0x16208fd89b588750d32a93c1c5066fe41489b21d62632051002a2fda15b0bd1
+	cd contract && garaga deploy --fee strk --class-hash 0x62412c03a6d8f5d1b721757a67e5e2d092ae0bbbdb487eb1c7c598835324a76
 
 invoke-contract:
 	cd contract && \
 		garaga verify-onchain \
 			--system ultra_keccak_honk \
-			--contract-address 0x2452c8fabb9b6fdf9479526de3dea401a70c290e400511d2291b1be4c355ad7 \
+			--contract-address 0x52691054da2ae92e7dd55afe4201adc6da412c97539f0f5b8687d069581165b \
 			--proof ../circuit/target/proof \
 			--vk ../circuit/target/vk \
 			--fee strk

@@ -15,7 +15,7 @@ make install
 
 ```bash
 curl -L noirup.dev | bash
-noirup
+noirup --version 1.0.0-beta.1
 ```
 
 ### Step 2: Install Barretenberg
@@ -24,7 +24,7 @@ Barretenberg is a proving backend for Noir.
 
 ```bash
 curl -L bbup.dev | bash
-bbup
+bbup --version 0.67.0
 ```
 
 ### Step 3: Install Scarb
@@ -170,7 +170,7 @@ garaga declare --fee strk
 Then we can instantiate it (change class-hash according to the output on the previous step):
 
 ```bash
-garaga deploy --fee strk --class-hash 0x16208fd89b588750d32a93c1c5066fe41489b21d62632051002a2fda15b0bd1
+garaga deploy --fee strk --class-hash 0x62412c03a6d8f5d1b721757a67e5e2d092ae0bbbdb487eb1c7c598835324a76
 ```
 
 ## Verify the proof on Starknet
@@ -178,5 +178,5 @@ garaga deploy --fee strk --class-hash 0x16208fd89b588750d32a93c1c5066fe41489b21d
 ### Step 14: Invoke the verifier contract
 
 ```bash
-garaga verify-onchain --system ultra_keccak_honk --contract-address 0x2452c8fabb9b6fdf9479526de3dea401a70c290e400511d2291b1be4c355ad7 --proof ../circuit/target/proof --vk ../circuit/target/vk --fee strk
+garaga verify-onchain --system ultra_keccak_honk --contract-address 0x52691054da2ae92e7dd55afe4201adc6da412c97539f0f5b8687d069581165b --proof ../circuit/target/proof --vk ../circuit/target/vk --fee strk
 ```
